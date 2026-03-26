@@ -167,6 +167,106 @@ killall yes
 * Terraform automation
 
 ---
+## 📘 Datadog Account, Trial & Key Concepts
+
+### 🆓 Free Trial & Learner Account
+
+Datadog provides a **14-day free trial** that allows users to explore its full monitoring and observability features without any cost.
+
+When signing up on **datadoghq.com**, a **learner (individual) account** can be created using a personal email (e.g., Gmail). Although Datadog is designed for enterprise use, it fully supports individual users for learning and experimentation.
+
+During the trial period:
+
+* Full access to infrastructure monitoring features is available
+* No credit card is required initially
+* Suitable for DevOps labs, personal projects, and practice environments
+
+---
+
+### 🔑 API Key vs Application Key (Important Change)
+
+Datadog uses two different types of keys, which often causes confusion:
+
+#### ✅ API Key (Used in this project)
+
+* Used by the **Datadog Agent**
+* Responsible for sending metrics from EC2 to Datadog
+* Must be configured in:
+  `/etc/datadog-agent/datadog.yaml`
+
+#### ❌ Application Key
+
+* Used for Datadog API integrations and programmatic access
+* NOT used for agent installation
+* Using this key results in **403 errors (Invalid API Key)**
+
+📌 **Recent UI Change:**
+
+* API Keys are now located under:
+  **Organization Settings → API Keys**
+* Application Keys are under:
+  **Personal Settings → Application Keys**
+
+---
+
+### 🧭 Region Awareness (Critical)
+
+Datadog accounts are region-specific:
+
+* `datadoghq.com` → US region
+* `datadoghq.eu` → EU region
+
+The following must always match:
+
+* Login URL
+* API Key source
+* Agent configuration (`site:` field)
+
+Mismatch leads to:
+
+* Authentication failures
+* HTTP 403 errors
+* No data in dashboard
+
+---
+
+### ⚙️ Datadog Agent Placement (How It Works)
+
+The **Datadog Agent** is installed **directly on the EC2 instance**.
+
+#### 📍 Location on System:
+
+* Configuration file:
+  `/etc/datadog-agent/datadog.yaml`
+* Service:
+  `datadog-agent` (runs as a background service)
+
+#### 🔄 Data Flow:
+
+EC2 Instance
+→ Datadog Agent (collects metrics)
+→ Datadog Cloud Platform
+→ Dashboard & Alerts
+
+The agent continuously collects:
+
+* CPU usage
+* Memory usage
+* Disk usage
+* Network statistics
+
+And securely sends them to Datadog servers using the API key.
+
+---
+
+### 🧠 Key Takeaways
+
+* Datadog offers a **free 14-day trial** suitable for learning
+* Always use **API Key (not Application Key)** for agent setup
+* Ensure **region consistency** across setup
+* Agent runs locally on EC2 and sends metrics to the cloud
+
+---
 
 ## 👨‍💻 Author
 

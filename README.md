@@ -9,12 +9,7 @@ This project demonstrates the setup of Datadog Agent on an AWS EC2 instance to m
 ---
 
 ## 🧱 Architecture Diagram
-flowchart TD
-    A[DevOps Engineer] --> B[EC2 Instance]
-    B --> C[Datadog Agent Installed]
-    C --> D[Datadog Cloud]
-    D --> E[Metrics Visualization]
-    D --> F[Alerting System]
+<img width="887" height="910" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/cb5be949-219a-4396-970d-df382d783aa8" />
 
 ---
 

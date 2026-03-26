@@ -4,6 +4,8 @@
 
 This project demonstrates the setup of Datadog Agent on an AWS EC2 instance to monitor system-level metrics such as CPU, memory, disk usage, and network activity in real time.
 
+<img width="1128" height="383" alt="image" src="https://github.com/user-attachments/assets/2f5aa58b-30f6-462d-aeb2-e2e437132c2f" />
+
 ---
 
 ## 🧱 Architecture Diagram

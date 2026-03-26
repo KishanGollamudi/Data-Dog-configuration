@@ -2,21 +2,31 @@
 
 ## 📌 Project Overview
 
-This project demonstrates the setup of **Datadog Agent** on an AWS EC2 instance to monitor system-level metrics such as CPU, memory, disk usage, and network activity in real time.
-
-The implementation showcases practical DevOps skills including agent installation, troubleshooting, configuration, and monitoring validation.
+This project demonstrates the setup of Datadog Agent on an AWS EC2 instance to monitor system-level metrics such as CPU, memory, disk usage, and network activity in real time.
 
 ---
 
-## 🧱 Architecture
+## 🧱 Architecture Diagram
 
-EC2 Instance (Ubuntu)
-↓
-Datadog Agent
-↓
-Datadog Cloud Dashboard
-↓
-Metrics Visualization & Alerts
+```mermaid
+flowchart LR
+    A[User / DevOps Engineer] --> B[AWS EC2 Instance (Ubuntu)]
+    B --> C[Datadog Agent]
+    C --> D[Datadog Cloud Platform]
+    D --> E[Metrics Dashboard]
+    D --> F[Alerts & Notifications]
+
+    subgraph EC2 Instance
+        B
+        C
+    end
+
+    subgraph Datadog Platform
+        D
+        E
+        F
+    end
+```
 
 ---
 
@@ -25,7 +35,7 @@ Metrics Visualization & Alerts
 * AWS EC2 (Ubuntu 24.04)
 * Datadog Agent v7
 * Linux CLI
-* Cloud Monitoring & Observability
+* Datadog (Monitoring & Observability)
 
 ---
 
@@ -71,11 +81,6 @@ DD_API_KEY=<YOUR_API_KEY> DD_SITE="datadoghq.com" bash -c "$(curl -L https://ins
 sudo datadog-agent status
 ```
 
-✅ Expected:
-
-* Agent running
-* CPU, Memory, Disk checks active
-
 ---
 
 ### 5️⃣ Configure Agent (if needed)
@@ -89,7 +94,7 @@ api_key: <YOUR_API_KEY>
 site: datadoghq.com
 ```
 
-Restart agent:
+Restart:
 
 ```bash
 sudo systemctl restart datadog-agent
@@ -99,99 +104,65 @@ sudo systemctl restart datadog-agent
 
 ## 🔍 Troubleshooting
 
-### ❌ Issue: API Key Invalid (403 Errors)
+### ❌ API Key Invalid (403)
 
-**Cause:**
-
-* Used Application Key instead of API Key
-* Wrong region (EU vs US)
-* Incorrect key copy
-
-**Fix:**
-
-* Generate new API key from Datadog
-* Ensure correct site (`datadoghq.com`)
+* Ensure API key (not Application key)
+* Verify correct region (datadoghq.com)
 * Restart agent
-
----
-
-### ❌ Issue: Host Not Visible
-
-**Fix:**
-
-* Check agent status
-* Verify API key
-* Restart service
 
 ---
 
 ## 📊 Validation
 
-After successful setup:
-
-👉 Navigate to:
-
-* Datadog → Infrastructure → Hosts
+Go to:
+👉 Infrastructure → Hosts
 
 You should see:
 
-* EC2 instance listed
-* CPU usage graph
-* Memory usage
-* Disk metrics
+* EC2 instance
+* CPU, Memory, Disk metrics
 
 ---
 
 ## 🧪 Load Testing
 
-Simulate CPU load:
-
 ```bash
 yes > /dev/null &
-```
-
-Stop process:
-
-```bash
 killall yes
 ```
 
 ---
 
-## 🔔 (Optional) Alert Setup
+## 🔔 Alert Setup (Optional)
 
-* Navigate to: Monitoring → Monitors
-* Create CPU alert:
-
-  * Metric: `system.cpu.user`
-  * Threshold: > 80%
+* Metric: `system.cpu.user`
+* Threshold: > 80%
 
 ---
 
 ## 🚀 Key Learnings
 
-* Agent-based monitoring setup
-* Debugging authentication errors (API key issues)
+* Agent-based monitoring
+* Debugging API authentication issues
 * Region mismatch troubleshooting
-* Real-time infrastructure observability
+* Real-time observability setup
 
 ---
 
 ## 📈 Outcome
 
 * Successfully integrated EC2 with Datadog
-* Enabled real-time monitoring
-* Verified metric collection and visualization
-* Built production-level monitoring setup
+* Real-time monitoring enabled
+* Metrics validated on dashboard
 
 ---
 
 ## 🔮 Future Enhancements
 
-* Log monitoring integration
-* Docker container monitoring
-* Kubernetes (EKS) monitoring
-* Terraform automation for deployment
+* Log monitoring
+* Docker monitoring
+* Kubernetes (EKS) integration
+* Terraform automation
 
 ---
 
@@ -199,6 +170,3 @@ killall yes
 
 Kishan
 DevOps Enthusiast | AWS | Monitoring & Observability
-
----
-
